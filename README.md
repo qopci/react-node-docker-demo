@@ -49,3 +49,25 @@ cd react-node-docker-demo
 `docker compose up` - Starts all services defined in docker-compose.yml
 
 `docker compose down` - Stops all running containers.
+
+## 📝 Docker Compose YML File Explanation
+
+The `docker-compose.yml` file defines the configuration for running both frontend and backend in Docker. Here's a breakdown:
+
+### Explanation
+
+- **version: "3.9"**  
+  Specifies the Docker Compose file format version.
+
+- **services**  
+  Defines the containers to run.
+
+  - **backend**  
+    - `build: ./backend` → Builds the Docker image using the `backend` folder’s Dockerfile.  
+    - `ports: "3001:3001"` → Maps container port `3001` to host port `3001`.
+
+  - **frontend**  
+    - `build: ./frontend` → Builds the Docker image using the `frontend` folder’s Dockerfile.  
+    - `ports: "3000:3000"` → Maps container port `3000` to host port `3000`.  
+    - `environment: CHOKIDAR_USEPOLLING=true` → Ensures file changes are detected properly on Windows/macOS for hot reloading.  
+    - `depends_on: backend` → Ensures the frontend starts **after** the backend container is ready.
