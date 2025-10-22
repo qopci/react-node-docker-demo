@@ -3,9 +3,9 @@
 A fun, containerized **React + Node.js** application that demonstrates how a frontend and backend can communicate seamlessly inside Docker using **Docker Compose**.
 
 This project includes:
-- A **React frontend** with Material UI styling 🐱  
-- A **Node.js Express backend** that serves playful random messages 😸  
-- A **Docker Compose setup** that runs both services together 😸  
+- A **React frontend** with Material UI styling 🎨 
+- A **Node.js Express backend** that serves playful random messages 💌
+- A **Docker Compose setup** that runs both services together ⚡  
 
 ---
 
@@ -42,13 +42,34 @@ Make sure you have the following installed on your computer:
 git clone https://github.com/<your-username>/react-node-docker-demo.git
 cd react-node-docker-demo
 ```
+---
 
-### 🏗️ Docker Commands
+## 🏗️ Docker Commands
 `docker compose up --build` - Builds images for Frontend and Backend.
 
 `docker compose up` - Starts all services defined in docker-compose.yml
 
 `docker compose down` - Stops all running containers.
+
+---
+
+## ⚙️ Dockerfile Explanation
+
+Both the frontend and backend use Dockerfiles to define how their Docker images are built.  
+
+**Key steps in both Dockerfiles:**
+
+1. `FROM node:20` → Uses the official Node.js 20 base image.  
+2. `WORKDIR /app` → Sets the working directory inside the container.  
+3. `COPY package*.json ./` → Copies dependency files.  
+4. `RUN npm install` → Installs all dependencies.  
+5. `COPY . .` → Copies the rest of the project files.  
+6. `EXPOSE <port>` → Exposes the container port (frontend: 3000, backend: 3001).  
+7. `CMD [...]` → Command to run the app (`node index.js` for backend, `npm start` for frontend).  
+
+This setup ensures that each service runs independently in its container with all dependencies installed and ports properly exposed for Docker Compose networking.
+
+---
 
 ## 📝 Docker Compose YML File Explanation
 
