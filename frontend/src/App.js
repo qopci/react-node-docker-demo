@@ -28,7 +28,7 @@ export default function App() {
       const res = await fetch("http://localhost:3001/messages"); // Backend URL
       const data = await res.json();
       setMessage(data.message);
-      setBgColor(getRandomColor()); // change card color
+      setBgColor(getRandomColor()); // Change card color
     } catch {
       setMessage("⚠️ Error connecting to backend!");
     } finally {

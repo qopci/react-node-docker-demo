@@ -30,6 +30,7 @@ const messages = [
 ];
 
 app.get("/messages", (req, res) => {
+  // Pick a random message from the array
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
   res.json({ message: randomMessage });
 });
